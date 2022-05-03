@@ -1,10 +1,12 @@
-### What is Core WCF? 
+## Core WCF Samples
 
-Core WCF is a port of Windows Communication Foundation (WCF) to .NET Core. The goal of this project is to enable existing WCF projects to move to .NET Core.
+### What is CoreWCF? 
+
+CoreWCF is a port of Windows Communication Foundation (WCF) to .NET Core. The goal of the project is to enable existing WCF projects to move to .NET Core.
 
 ### Samples
 
-This repo contains samples for how to use [CoreWCF](../CoreWCF/) in your projects. The best place to get started is [Basic / Binding / Basic / Http](Basic/Binding/Basic/Http).
+This repo contains samples for how to use [CoreWCF](../CoreWCF/) in your projects. The best place to get started is [Scenarios / Getting-started-with-CoreWCF](Scenarios / Getting-started-with-CoreWCF).
 
 The goal for this repo is to match the structure of the WCF samples so its easy to transition from one to the other.
 

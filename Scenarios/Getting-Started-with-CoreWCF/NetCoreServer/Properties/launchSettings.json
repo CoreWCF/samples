@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "NetCoreServer": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "nativeDebugging": false,
+      "applicationUrl": "http://localhost:8088/EchoService;https://localhost:8443/EchoService"
+    }
+  }
+}
