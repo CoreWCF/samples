@@ -6,7 +6,7 @@ CoreWCF is a port of Windows Communication Foundation (WCF) to .NET Core. The go
 
 ### Samples
 
-This repo contains samples for how to use [CoreWCF](../CoreWCF/) in your projects. The best place to get started is [Scenarios / Getting-started-with-CoreWCF](Scenarios / Getting-started-with-CoreWCF).
+This repo contains samples for how to use [CoreWCF](../CoreWCF/) in your projects. The best place to get started is [Scenarios / Getting-started-with-CoreWCF](Scenarios/Getting-started-with-CoreWCF).
 
 The goal for this repo is to match the structure of the WCF samples so its easy to transition from one to the other.
 
