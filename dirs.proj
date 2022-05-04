@@ -1,6 +1,6 @@
-<Project Sdk="Microsoft.Build.Traversal/3.1.6">
+<Project Sdk="Microsoft.Build.Traversal">
   <ItemGroup>
-    <!-- Build all projects recursively under the "src" folder -->
-    <ProjectReference Include="Scenarios\**\*.*proj" />
+    <!-- Build the projects under each listed folder -->
+    <ProjectReference Include="Scenarios\dirs.proj" />
   </ItemGroup>
 </Project>
