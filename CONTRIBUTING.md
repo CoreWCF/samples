@@ -1,14 +1,14 @@
 # How to contribute
 
-The easiest way to contribute is to open an issue and start a discussion.
+The easiest way to contribute is to open an issue and start a discussion. The community is welcome to submit additional samples to this repo.
 
 Samples should be:
-* Small and demonstrate a single concept
+* Targeted - Each sample should be small and demonstrate a single feature or concept
 * Self contained - you should be able to copy the folder for the sample and not have to go hunting for helper classes
-* Simple to follow
+* Simple to follow - the simpler the code is, the easier it is for other developers to be able to follow, and to be able to copy snippets from for use in their projects 
 * Minimal dependencies - don't reference other nuget packages or frameworks if they are not critical to the functionality of the sample
-* Paired for client and server, or supply any special instructions for creating a client using svc-util.
-* Targeting the latest released version of CoreWCF
+* Paired with samples for client and server, or supply any special instructions for creating a client using svcutil.
+* Targeting the latest released version of CoreWCF - Please use a draft PR until the corresponding feature is complete and included in a release.
 
 Also read this first: [Being a good open source citizen](https://hackernoon.com/being-a-good-open-source-citizen-9060d0ab9732#.x3hocgw85)
 
@@ -18,11 +18,11 @@ Please use the [CoreWCF issues](https://github.com/CoreWCF/CoreWCF/issues) for a
 
 ## Platform
 
-Core WCF is built targeting .NET Standard 2.0
+Core WCF is built targeting .NET Standard 2.0. Unless the sample is dependent on features not present, the samples should work on .NET Standard. Where possible samples should not take OS/hardware dependencies and so work on Linux and Windows on x86, x64 and Arm64.
 
 ## Building
 
-Run `dotnet build` from the command line. This builds all the samples.
+Run `dotnet build` from the command line. This builds all the samples. The build scripts should be recursive and find all project files.
 
 ## Contributing code and content
 
