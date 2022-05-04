@@ -10,6 +10,10 @@ This repo contains samples for how to use [CoreWCF](../CoreWCF/) in your project
 
 The goal for this repo is to match the structure of the WCF samples so it's easy to transition from one to the other.
 
+### Building the samples
+
+You should be able to call `dotnet build` or `dotnet publish` at any level of the folder hierachy to build that folder and its children.
+
 ### How do I contribute?
 
 Please see the [CONTRIBUTING.md](CONTRIBUTING.md) file for details.

@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.Build.Traversal">
+  <ItemGroup>
+    <!-- Build all projects recursively under the "src" folder -->
+    <ProjectReference Include="**\*.*proj" />
+  </ItemGroup>
+</Project>
