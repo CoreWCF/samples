@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: CoreWCF issues not directly related to samples
+    url: https://github.com/CoreWCF/CoreWCF/issues/new
+    about: Please file issues not directly related to the CoreWCF samples in the main CoreWCF repo.
+  - name: CoreWCF Security Issues
+    url: https://github.com/CoreWCF/CoreWCF/blob/main/SECURITY.md
+    about: Please report any security vulnerabilities by email as described here
