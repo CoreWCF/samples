@@ -135,7 +135,7 @@
             }
           },
           "ComplexProperty": {
-            "$ref": "#/components/schemas/ExampleContract-InnerExampleResponse"
+            "$ref": "#/components/schemas/ExampleContract-InnerContract"
           },
           "SimpleCollection": {
             "type": "array",
@@ -158,7 +158,7 @@
           "ComplexCollection": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ExampleContract-Array-InnerExampleResponse"
+              "$ref": "#/components/schemas/ExampleContract-Array-InnerContract"
             },
             "description": "ComplexCollection description.",
             "xml": {
@@ -174,7 +174,7 @@
           "prefix": "ns4"
         }
       },
-      "ExampleContract-InnerExampleResponse": {
+      "ExampleContract-InnerContract": {
         "type": "object",
         "properties": {
           "Name": {
@@ -191,7 +191,7 @@
           "prefix": "ns4"
         }
       },
-      "ExampleContract-Array-InnerExampleResponse": {
+      "ExampleContract-Array-InnerContract": {
         "type": "object",
         "properties": {
           "Name": {
@@ -204,7 +204,7 @@
           }
         },
         "xml": {
-          "name": "InnerExampleResponse",
+          "name": "InnerContract",
           "namespace": "http://example.com",
           "prefix": "ns4"
         }

@@ -16,19 +16,20 @@ namespace WebHttp
 
         [DataMember(Name = "ComplexProperty", Order = 2)]
         [OpenApiProperty(Description = "ComplexProperty description.")]
-        public InnerExampleContract ComplexProperty { get; set; }
+        public InnerContract ComplexProperty { get; set; }
 
         [DataMember(Name = "SimpleCollection", Order = 3)]
         [OpenApiProperty(Description = "SimpleCollection description.")]
         public List<string> SimpleCollection { get; set; }
 
+
         [DataMember(Name = "ComplexCollection", Order = 4)]
         [OpenApiProperty(Description = "ComplexCollection description.")]
-        public List<InnerExampleContract> ComplexCollection { get; set; }
+        public List<InnerContract> ComplexCollection { get; set; }
     }
 
-    [DataContract(Name = "InnerExampleResponse", Namespace = "http://example.com")]
-    internal class InnerExampleContract
+    [DataContract(Name = "InnerContract", Namespace = "http://example.com")]
+    internal class InnerContract
     {
         [DataMember(Name = "Name", Order = 1)]
         [OpenApiProperty(Description = "Name description.")]

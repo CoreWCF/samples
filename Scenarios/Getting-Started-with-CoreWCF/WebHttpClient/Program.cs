@@ -21,18 +21,13 @@ Console.WriteLine(JsonSerialize(result2));
 
 ExampleContract CreateExampleContract()
 {
-    var contract = new WebHttpClient.ExampleContract()
+    return new ExampleContract()
     {
         SimpleProperty = "House Stark",
-        ComplexProperty = new WebHttpClient.ExampleContractInnerExampleResponse { Name = "Jon Snow" },
-        SimpleCollection = "Winter is coming".Split(" ")
+        ComplexProperty = new () { Name = "Jon Snow" },
+        SimpleCollection = "Winter is coming".Split(" "),
+        ComplexCollection = new ExampleContractArrayInnerContract[] { new() { Name = "Arya Stark" }, new() { Name = "Sansa Stark" } }
     };
-
-    var inner = new ExampleContractArrayInnerExampleResponse() { Name = "Arya Stark" };
-    var inner2 = new ExampleContractArrayInnerExampleResponse() { Name = "Sansa Stark" };
-
-    contract.ComplexCollection = new System.Collections.Generic.List<ExampleContractArrayInnerExampleResponse>(new ExampleContractArrayInnerExampleResponse[] { inner, inner2 });
-    return contract;
 }
 
 string JsonSerialize<T>(T thing)
