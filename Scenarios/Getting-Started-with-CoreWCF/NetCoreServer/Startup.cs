@@ -11,14 +11,16 @@ namespace NetCoreServer
 {
     public class Startup
     {
-        public const string HOST_IN_WSDL = "localhost";
         public const int HTTP_PORT = 8088;
         public const int HTTPS_PORT = 8443;
         public const int NETTCP_PORT = 8089;
+        // Only used on case that UseRequestHeadersForMetadataAddressBehavior is not used
+        public const string HOST_IN_WSDL = "localhost";
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //Enable CoreWCF Services, with metadata (WSDL) support
+            // Enable CoreWCF Services, enable metadata
+            // Use the Url used to fetch WSDL as that service endpoint address in generated WSDL 
             services.AddServiceModelServices()
                     .AddServiceModelMetadata()
                     .AddSingleton<IServiceBehavior, UseRequestHeadersForMetadataAddressBehavior>();
@@ -31,7 +33,7 @@ namespace NetCoreServer
                 // Add the Echo Service
                 builder.AddService<EchoService>(serviceOptions =>
                 {
-                    // Set a base path for all bindings to the service, and WSDL discovery
+                    // Set the default host name:port in generated WSDL and the base path for the address 
                     serviceOptions.BaseAddresses.Add(new Uri($"http://{HOST_IN_WSDL}/EchoService"));
                     serviceOptions.BaseAddresses.Add(new Uri($"https://{HOST_IN_WSDL}/EchoService"));
                 })
@@ -47,8 +49,7 @@ namespace NetCoreServer
 
                 // Configure WSDL to be available over http & https
                 var serviceMetadataBehavior = app.ApplicationServices.GetRequiredService<CoreWCF.Description.ServiceMetadataBehavior>();
-                serviceMetadataBehavior.HttpGetEnabled = true;
-                serviceMetadataBehavior.HttpsGetEnabled = true;
+                serviceMetadataBehavior.HttpGetEnabled = serviceMetadataBehavior.HttpsGetEnabled = true;
             });
         }
     }

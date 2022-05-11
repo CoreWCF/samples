@@ -5,8 +5,8 @@ using CoreWCF.Description;
 using MinimalAPIServer;
 using MyContracts;
 
-const string BASE_HTTP_URL = "http://localhost:5000";
-const string BASE_HTTPS_URL = "https://localhost:5001";
+// Only used on case that UseRequestHeadersForMetadataAddressBehavior is not used
+const string HOST_IN_WSDL = "localhost";
 
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.ConfigureKestrel((context, options) =>
@@ -16,22 +16,20 @@ builder.WebHost.ConfigureKestrel((context, options) =>
 
 // Add WSDL support
 builder.Services.AddServiceModelServices().AddServiceModelMetadata();
+// Use the Url used to fetch WSDL as that service endpoint address in generated WSDL 
 builder.Services.AddSingleton<IServiceBehavior, UseRequestHeadersForMetadataAddressBehavior>();
 var app = builder.Build();
-
-app.Urls.Add(BASE_HTTP_URL);
-app.Urls.Add(BASE_HTTPS_URL);
 
 app.UseServiceModel(builder =>
 {
     builder.AddService<EchoService>((serviceOptions) =>
     {
-        // Set the base addressrs that will be used for the service and acts as the WSDL endpoint 
-        serviceOptions.BaseAddresses.Add(new Uri($"{BASE_HTTP_URL}/EchoService"));
-        serviceOptions.BaseAddresses.Add(new Uri($"{BASE_HTTPS_URL}/EchoService"));
+        // Set the default host name:port in generated WSDL and the base path for the address 
+        serviceOptions.BaseAddresses.Add(new Uri($"http://{HOST_IN_WSDL}/EchoService"));
+        serviceOptions.BaseAddresses.Add(new Uri($"https://{HOST_IN_WSDL}/EchoService"));
     })
-    .AddServiceEndpoint<EchoService, IEchoService>(new BasicHttpBinding(), "/basichttp")
-    .AddServiceEndpoint<EchoService, IEchoService>(new BasicHttpBinding(BasicHttpSecurityMode.Transport), "/basichttp");
+    .AddServiceEndpoint<EchoService, IEchoService>(new BasicHttpBinding(), "/basicHttp")
+    .AddServiceEndpoint<EchoService, IEchoService>(new BasicHttpBinding(BasicHttpSecurityMode.Transport), "/basicHttp");
 });
 
 // Enable WSDL for http & https
