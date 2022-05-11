@@ -18,7 +18,7 @@ namespace NetCoreClient
             CallBasicHttpBinding($"https://localhost:{HTTPS_PORT}");
             CallWsHttpBinding($"http://localhost:{HTTP_PORT}");
             CallWsHttpBinding($"https://localhost:{HTTPS_PORT}");
-            CallNetTcpBinding($"net.tcp://{NETTCP_PORT}");
+            CallNetTcpBinding($"net.tcp://localhost:{NETTCP_PORT}");
         }
 
         private static void CallBasicHttpBinding(string hostAddr)
@@ -73,7 +73,7 @@ namespace NetCoreClient
 
             var binding = new NetTcpBinding();
 
-            var factory = new ChannelFactory<IEchoService>(binding, new EndpointAddress($"{hostAddr}/netTcp"));
+            var factory = new ChannelFactory<IEchoService>(binding, new EndpointAddress($"{hostAddr}/EchoService/netTcp"));
             factory.Open();
             try
             {
