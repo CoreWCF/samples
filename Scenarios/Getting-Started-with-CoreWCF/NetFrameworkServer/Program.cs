@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.ServiceModel;
 
 namespace DesktopServer
@@ -33,7 +32,7 @@ namespace DesktopServer
             host.Close();
         }
 
-           private static void LogHostUrls(ServiceHost host)
+        private static void LogHostUrls(ServiceHost host)
         {
             foreach (System.ServiceModel.Description.ServiceEndpoint endpoint in host.Description.Endpoints)
             {

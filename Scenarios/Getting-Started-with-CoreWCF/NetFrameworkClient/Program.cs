@@ -5,7 +5,6 @@ using Contract;
 
 namespace NetFrameworkClient
 {
-
     public class Program
     {
         public const int HTTP_PORT = 8088;

@@ -5,7 +5,7 @@ using CoreWCF.Description;
 using MinimalAPIServer;
 using MyContracts;
 
-// Only used on case that UseRequestHeadersForMetadataAddressBehavior is not used
+// Only used in the case that UseRequestHeadersForMetadataAddressBehavior doesn't apply
 const string HOST_IN_WSDL = "localhost";
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,7 +16,7 @@ builder.WebHost.ConfigureKestrel((context, options) =>
 
 // Add WSDL support
 builder.Services.AddServiceModelServices().AddServiceModelMetadata();
-// Use the Url used to fetch WSDL as that service endpoint address in generated WSDL 
+// Use the scheme/host/port used to fetch WSDL as that service endpoint address in generated WSDL 
 builder.Services.AddSingleton<IServiceBehavior, UseRequestHeadersForMetadataAddressBehavior>();
 var app = builder.Build();
 
