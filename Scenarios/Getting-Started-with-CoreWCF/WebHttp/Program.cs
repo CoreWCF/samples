@@ -7,8 +7,8 @@ IWebHostBuilder builder = WebHost.CreateDefaultBuilder(args)
     .UseKestrel(options =>
     {
         options.AllowSynchronousIO = true;
-        options.ListenLocalhost(8080);
-        options.Listen(address: IPAddress.Loopback, 8081, listenOptions =>
+        options.ListenAnyIP(8080);
+        options.ListenAnyIP(8443, listenOptions =>
         {
             listenOptions.UseHttps();
         });

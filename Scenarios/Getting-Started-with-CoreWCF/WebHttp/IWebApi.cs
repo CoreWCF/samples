@@ -8,6 +8,9 @@ using CoreWCF.Web;
 
 namespace WebHttp
 {
+    // Note the OpenAPI attributes are not strictly necessary as defaults are chosen in most cases,
+    // but are used here to show how they can customize the swagger documentation.
+
     [ServiceContract]
     [OpenApiBasePath("/api")]
     internal interface IWebApi
