@@ -1,8 +1,8 @@
 ﻿using System;
 using CoreWCF;
 using CoreWCF.Configuration;
+using CoreWCF.Channels;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Contract;
 using CoreWCF.Description;
@@ -38,14 +38,16 @@ namespace NetCoreServer
                     serviceOptions.BaseAddresses.Add(new Uri($"https://{HOST_IN_WSDL}/EchoService"));
                 })
                 // Add a BasicHttpBinding endpoint
-                .AddServiceEndpoint<EchoService, IEchoService>(new BasicHttpBinding(), "/basicHttp")
+                .AddServiceEndpoint<EchoService, IEchoService>(new BasicHttpBinding(), "/basichttp")
+                .AddServiceEndpoint<EchoService, IEchoService>(new BasicHttpBinding(BasicHttpSecurityMode.Transport), "/basichttp")
 
                 // Add WSHttpBinding endpoints
                 .AddServiceEndpoint<EchoService, IEchoService>(new WSHttpBinding(SecurityMode.None), "/wsHttp")
                 .AddServiceEndpoint<EchoService, IEchoService>(new WSHttpBinding(SecurityMode.Transport), "/wsHttp")
 
                 // Add NetTcpBinding
-                .AddServiceEndpoint<EchoService, IEchoService>(new NetTcpBinding(), $"/netTcp");
+                .AddServiceEndpoint<EchoService, IEchoService>(new NetTcpBinding(), $"net.tcp://localhost:{NETTCP_PORT}/netTcp");
+
 
                 // Configure WSDL to be available over http & https
                 var serviceMetadataBehavior = app.ApplicationServices.GetRequiredService<CoreWCF.Description.ServiceMetadataBehavior>();

@@ -1,5 +1,6 @@
 ﻿using System.Runtime.Serialization;
 using System.ServiceModel;
+using System.Threading.Tasks;
 
 namespace Contract
 {
@@ -13,15 +14,16 @@ namespace Contract
     [ServiceContract]
     public interface IEchoService
     {
+        // Note: The contract on the client has been changed to make the methods async.
         [OperationContract]
-        string Echo(string text);
+        Task<string> Echo(string text);
 
         [OperationContract]
-        string ComplexEcho(EchoMessage text);
+        Task<string> ComplexEcho(EchoMessage text);
 
         [OperationContract]
         [FaultContract(typeof(EchoFault))]
-        string FailEcho(string text);
+        Task<string> FailEcho(string text);
     }
 
     [DataContract]

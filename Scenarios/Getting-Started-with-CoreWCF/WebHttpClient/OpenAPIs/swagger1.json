@@ -1,0 +1,218 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Test API",
+    "description": "API Description",
+    "termsOfService": "http://example.com/terms",
+    "contact": {
+      "name": "Contact",
+      "url": "http://example.com/contact",
+      "email": "support@example.com"
+    },
+    "version": "1"
+  },
+  "paths": {
+    "/api/path/{param}": {
+      "get": {
+        "tags": [
+          "Tag"
+        ],
+        "parameters": [
+          {
+            "name": "param",
+            "in": "path",
+            "description": "param description.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/query": {
+      "get": {
+        "tags": [
+          "Tag"
+        ],
+        "parameters": [
+          {
+            "name": "param",
+            "in": "query",
+            "description": "param description.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/body": {
+      "post": {
+        "tags": [
+          "Tag"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExampleContract"
+              }
+            },
+            "text/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ExampleContract"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExampleContract"
+                }
+              },
+              "text/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExampleContract"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ExampleContract": {
+        "type": "object",
+        "properties": {
+          "SimpleProperty": {
+            "type": "string",
+            "description": "SimpleProperty description.",
+            "xml": {
+              "namespace": "http://example.com",
+              "prefix": "ns4"
+            }
+          },
+          "ComplexProperty": {
+            "$ref": "#/components/schemas/ExampleContract-InnerContract"
+          },
+          "SimpleCollection": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "xml": {
+                "name": "string",
+                "namespace": "http://schemas.microsoft.com/2003/10/Serialization/Arrays",
+                "prefix": "ns5"
+              }
+            },
+            "description": "SimpleCollection description.",
+            "xml": {
+              "name": "SimpleCollection",
+              "namespace": "http://example.com",
+              "prefix": "ns4",
+              "wrapped": true
+            }
+          },
+          "ComplexCollection": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExampleContract-Array-InnerContract"
+            },
+            "description": "ComplexCollection description.",
+            "xml": {
+              "name": "ComplexCollection",
+              "namespace": "http://example.com",
+              "prefix": "ns4",
+              "wrapped": true
+            }
+          }
+        },
+        "xml": {
+          "namespace": "http://example.com",
+          "prefix": "ns4"
+        }
+      },
+      "ExampleContract-InnerContract": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "description": "Name description.",
+            "xml": {
+              "namespace": "http://example.com",
+              "prefix": "ns4"
+            }
+          }
+        },
+        "xml": {
+          "namespace": "http://example.com",
+          "prefix": "ns4"
+        }
+      },
+      "ExampleContract-Array-InnerContract": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "description": "Name description.",
+            "xml": {
+              "namespace": "http://example.com",
+              "prefix": "ns4"
+            }
+          }
+        },
+        "xml": {
+          "name": "InnerContract",
+          "namespace": "http://example.com",
+          "prefix": "ns4"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Documentation",
+    "url": "http://example.com/doc.pdf"
+  }
+}
