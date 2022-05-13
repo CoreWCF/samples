@@ -20,8 +20,8 @@ namespace NetCoreServer
             WebHost.CreateDefaultBuilder(args)
             .UseKestrel(options => {
                 options.AllowSynchronousIO = true;
-                options.ListenLocalhost(Startup.HTTP_PORT);
-                options.ListenLocalhost(Startup.HTTPS_PORT, listenOptions =>
+                options.ListenAnyIP(Startup.HTTP_PORT);
+                options.ListenAnyIP(Startup.HTTPS_PORT, listenOptions =>
                 {
                     listenOptions.UseHttps();
                     if (Debugger.IsAttached)

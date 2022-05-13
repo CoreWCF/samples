@@ -1,29 +1,33 @@
 ﻿using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.Threading.Tasks;
 
 namespace Contract
 {
     [DataContract]
     public class EchoFault
     {
+        private string text;
+
         [DataMember]
-        public string Text { get; set; }
+        public string Text
+        {
+            get { return text; }
+            set { text = value; }
+        }
     }
 
     [ServiceContract]
     public interface IEchoService
     {
-        // Note: The contract on the client has been changed to make the methods async.
         [OperationContract]
-        Task<string> Echo(string text);
+        string Echo(string text);
 
         [OperationContract]
-        Task<string> ComplexEcho(EchoMessage text);
+        string ComplexEcho(EchoMessage text);
 
         [OperationContract]
         [FaultContract(typeof(EchoFault))]
-        Task<string> FailEcho(string text);
+        string FailEcho(string text);
     }
 
     [DataContract]

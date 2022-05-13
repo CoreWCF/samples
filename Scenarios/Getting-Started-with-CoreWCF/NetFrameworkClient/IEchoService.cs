@@ -14,7 +14,6 @@ namespace Contract
     [ServiceContract]
     public interface IEchoService
     {
-        // Note: The contract on the client has been changed to make the methods async.
         [OperationContract]
         Task<string> Echo(string text);
 
