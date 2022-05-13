@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "NetFrameworkClient": {
+      "commandName": "Project"
+    }
+  }
+}

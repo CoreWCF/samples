@@ -3,7 +3,7 @@ using System.ServiceModel;
 using System.Threading.Tasks;
 using Contract;
 
-namespace NetCoreClient
+namespace NetFrameworkClient
 {
     public class Program
     {
@@ -13,7 +13,7 @@ namespace NetCoreClient
 
         static async Task Main(string[] args)
         {
-            Console.Title = "WCF .Net Core Client";
+            Console.Title = "WCF .Net Framework Client";
 
             await CallBasicHttpBinding($"http://localhost:{HTTP_PORT}");
             await CallBasicHttpBinding($"https://localhost:{HTTPS_PORT}");
@@ -28,7 +28,7 @@ namespace NetCoreClient
 
             var binding = new BasicHttpBinding(IsHttps(hostAddr) ? BasicHttpSecurityMode.Transport : BasicHttpSecurityMode.None);
 
-            var factory = new ChannelFactory<IEchoService>(binding, new EndpointAddress($"{hostAddr}/EchoService/basicHttp"));
+            var factory = new ChannelFactory<IEchoService>(binding, new EndpointAddress($"{hostAddr}/basicHttp"));
             factory.Open();
             try
             {
@@ -51,7 +51,7 @@ namespace NetCoreClient
 
             var binding = new WSHttpBinding(IsHttps(hostAddr) ? SecurityMode.Transport : SecurityMode.None);
 
-            var factory = new ChannelFactory<IEchoService>(binding, new EndpointAddress($"{hostAddr}/EchoService/wsHttp"));
+            var factory = new ChannelFactory<IEchoService>(binding, new EndpointAddress($"{hostAddr}/wsHttp"));
             factory.Open();
             try
             {
@@ -74,7 +74,7 @@ namespace NetCoreClient
 
             var binding = new NetTcpBinding();
 
-            var factory = new ChannelFactory<IEchoService>(binding, new EndpointAddress($"{hostAddr}/EchoService/netTcp"));
+            var factory = new ChannelFactory<IEchoService>(binding, new EndpointAddress($"{hostAddr}/nettcp"));
             factory.Open();
             try
             {
