@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ServiceModel;
+using System.Threading.Tasks;
 using Contract;
 
 namespace NetCoreClient
@@ -10,18 +11,18 @@ namespace NetCoreClient
         public const int HTTPS_PORT = 8443;
         public const int NETTCP_PORT = 8089;
 
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             Console.Title = "WCF .Net Core Client";
 
-            CallBasicHttpBinding($"http://localhost:{HTTP_PORT}");
-            CallBasicHttpBinding($"https://localhost:{HTTPS_PORT}");
-            CallWsHttpBinding($"http://localhost:{HTTP_PORT}");
-            CallWsHttpBinding($"https://localhost:{HTTPS_PORT}");
-            CallNetTcpBinding($"net.tcp://{NETTCP_PORT}");
+            await CallBasicHttpBinding($"http://localhost:{HTTP_PORT}");
+            await CallBasicHttpBinding($"https://localhost:{HTTPS_PORT}");
+            await CallWsHttpBinding($"http://localhost:{HTTP_PORT}");
+            await CallWsHttpBinding($"https://localhost:{HTTPS_PORT}");
+            await CallNetTcpBinding($"net.tcp://localhost:{NETTCP_PORT}");
         }
 
-        private static void CallBasicHttpBinding(string hostAddr)
+        private static async Task CallBasicHttpBinding(string hostAddr)
         {
             IClientChannel channel = null;
 
@@ -33,8 +34,8 @@ namespace NetCoreClient
             {
                 IEchoService client = factory.CreateChannel();
                 channel = client as IClientChannel;
-
-                var result = client.Echo("Hello World!");
+                channel.Open();
+                var result = await client.Echo("Hello World!");
                 channel.Close();
                 Console.WriteLine(result);
             }
@@ -44,7 +45,7 @@ namespace NetCoreClient
             }
         }
 
-        private static void CallWsHttpBinding(string hostAddr)
+        private static async Task CallWsHttpBinding(string hostAddr)
         {
             IClientChannel channel = null;
 
@@ -56,8 +57,8 @@ namespace NetCoreClient
             {
                 IEchoService client = factory.CreateChannel();
                 channel = client as IClientChannel;
-
-                var result = client.Echo("Hello World!");
+                channel.Open();
+                var result = await client.Echo("Hello World!");
                 channel.Close();
                 Console.WriteLine(result);
             }
@@ -67,7 +68,7 @@ namespace NetCoreClient
             }
         }
 
-        private static void CallNetTcpBinding(string hostAddr)
+        private static async Task CallNetTcpBinding(string hostAddr)
         {
             IClientChannel channel = null;
 
@@ -79,8 +80,8 @@ namespace NetCoreClient
             {
                 IEchoService client = factory.CreateChannel();
                 channel = client as IClientChannel;
-
-                var result = client.Echo("Hello World!");
+                channel.Open();
+                var result = await client.Echo("Hello World!");
                 channel.Close();
                 Console.WriteLine(result);
             }
