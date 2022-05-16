@@ -1,14 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>.NET6</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 		<UserSecretsId>corewcf-samples-secrets</UserSecretsId>
 	</PropertyGroup>
-	<ItemGroup>
-		<Compile Remove="CustomUserNamePasswordValidatorCore.cs" />
-		<Compile Remove="WSHttpUserPassword.cs" />
-		<Compile Remove="WSHttpWithWindowsAuthAndRoles.cs" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore" Version="2.1.7" />
