@@ -6,7 +6,6 @@ using System.Net;
 IWebHostBuilder builder = WebHost.CreateDefaultBuilder(args)
     .UseKestrel(options =>
     {
-        options.AllowSynchronousIO = true;
         options.ListenAnyIP(8080);
         options.ListenAnyIP(8443, listenOptions =>
         {
