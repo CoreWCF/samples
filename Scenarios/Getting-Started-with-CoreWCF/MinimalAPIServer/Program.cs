@@ -9,10 +9,6 @@ using MyContracts;
 const string HOST_IN_WSDL = "localhost";
 
 var builder = WebApplication.CreateBuilder(args);
-builder.WebHost.ConfigureKestrel((context, options) =>
-{
-    options.AllowSynchronousIO = true;
-});
 
 // Add WSDL support
 builder.Services.AddServiceModelServices().AddServiceModelMetadata();
