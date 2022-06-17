@@ -9,8 +9,8 @@ var up = client.ClientCredentials.UserName;
 up.UserName = "ImValid";
 up.Password = "passwordIsValid";
 
-client.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode = System.ServiceModel.Security.X509CertificateValidationMode.Custom;
-client.ClientCredentials.ServiceCertificate.Authentication.CustomCertificateValidator = new MyCertValidator();
+client.ClientCredentials.ServiceCertificate.SslCertificateAuthentication = new  System.ServiceModel.Security.X509ServiceCertificateAuthentication();
+client.ClientCredentials.ServiceCertificate.SslCertificateAuthentication.CertificateValidationMode = System.ServiceModel.Security.X509CertificateValidationMode.None;
 
 await client.OpenAsync();
 var result = await client.EchoAsync("This should work");
