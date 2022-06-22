@@ -2,5 +2,6 @@
   <ItemGroup>
     <!-- Build the projects under each listed folder -->
     <ProjectReference Include="Scenarios\dirs.proj" />
+    <ProjectReference Include="Basic\dirs.proj" />
   </ItemGroup>
 </Project>
