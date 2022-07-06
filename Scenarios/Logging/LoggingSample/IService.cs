@@ -19,6 +19,7 @@ namespace LoggingSample
         private ILogger<Service> _logger;
 
         // Parameterized constructor will be called by Dependency Injection
+        // Logs will be created under the name "LoggingSample.Service" as that's the type name used constructing the logger object
         public Service(ILogger<Service> logger)
         {
             _logger = logger;
@@ -39,6 +40,8 @@ namespace LoggingSample
             }
             if (composite.BoolValue)
             {
+                // Note: This is skipped by default because of the level set in appsettings.json
+                _logger.LogTrace("StringValue is being modified");
                 composite.StringValue += "Suffix";
             }
             return composite;

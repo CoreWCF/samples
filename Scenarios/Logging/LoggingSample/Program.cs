@@ -1,4 +1,4 @@
-﻿// Project created using the CoreWCF.Templates template
+﻿// Project created using the CoreWCF.Templates project template
 
 var builder = WebApplication.CreateBuilder();
 
