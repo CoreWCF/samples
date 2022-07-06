@@ -6,7 +6,7 @@ The `Service` class is registered as a singleton with DI as part of the process 
 
 This same DI mechanism can be used to pass any necessary utility classes into the service by adding them to the service constructor. 
 
-The logger is created for the `LoggingSample.Service` type, and is configured in (appsettings.json)[appsettings.json] to log entries for Information level and higher. 
+The logger is created for the `LoggingSample.Service` type, and is configured in [appsettings.json](LoggingSampple/appsettings.json) to log entries for Information level and higher. 
 
 ## Logging sample client
 
