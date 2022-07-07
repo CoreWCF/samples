@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ServiceReference1
+namespace ServiceReference2
 {
     using System.Runtime.Serialization;
     
@@ -50,25 +50,22 @@ namespace ServiceReference1
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IService")]
-    public interface IService
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference2.IService2")]
+    public interface IService2
     {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetData", ReplyAction="http://tempuri.org/IService/GetDataResponse")]
-        System.Threading.Tasks.Task<string> GetDataAsync(int value);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IService/GetDataUsingDataContractResponse")]
-        System.Threading.Tasks.Task<ServiceReference1.CompositeType> GetDataUsingDataContractAsync(ServiceReference1.CompositeType composite);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService2/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IService2/GetDataUsingDataContractResponse")]
+        System.Threading.Tasks.Task<ServiceReference2.CompositeType> GetDataUsingDataContractAsync(ServiceReference2.CompositeType composite);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
-    public interface IServiceChannel : ServiceReference1.IService, System.ServiceModel.IClientChannel
+    public interface IService2Channel : ServiceReference2.IService2, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
-    public partial class ServiceClient : System.ServiceModel.ClientBase<ServiceReference1.IService>, ServiceReference1.IService
+    public partial class Service2Client : System.ServiceModel.ClientBase<ServiceReference2.IService2>, ServiceReference2.IService2
     {
         
         /// <summary>
@@ -78,45 +75,40 @@ namespace ServiceReference1
         /// <param name="clientCredentials">The client credentials</param>
         static partial void ConfigureEndpoint(System.ServiceModel.Description.ServiceEndpoint serviceEndpoint, System.ServiceModel.Description.ClientCredentials clientCredentials);
         
-        public ServiceClient() : 
-                base(ServiceClient.GetDefaultBinding(), ServiceClient.GetDefaultEndpointAddress())
+        public Service2Client() : 
+                base(Service2Client.GetDefaultBinding(), Service2Client.GetDefaultEndpointAddress())
         {
-            this.Endpoint.Name = EndpointConfiguration.BasicHttpBinding_IService.ToString();
+            this.Endpoint.Name = EndpointConfiguration.BasicHttpBinding_IService2.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
-        public ServiceClient(EndpointConfiguration endpointConfiguration) : 
-                base(ServiceClient.GetBindingForEndpoint(endpointConfiguration), ServiceClient.GetEndpointAddress(endpointConfiguration))
-        {
-            this.Endpoint.Name = endpointConfiguration.ToString();
-            ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
-        }
-        
-        public ServiceClient(EndpointConfiguration endpointConfiguration, string remoteAddress) : 
-                base(ServiceClient.GetBindingForEndpoint(endpointConfiguration), new System.ServiceModel.EndpointAddress(remoteAddress))
+        public Service2Client(EndpointConfiguration endpointConfiguration) : 
+                base(Service2Client.GetBindingForEndpoint(endpointConfiguration), Service2Client.GetEndpointAddress(endpointConfiguration))
         {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
-        public ServiceClient(EndpointConfiguration endpointConfiguration, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(ServiceClient.GetBindingForEndpoint(endpointConfiguration), remoteAddress)
+        public Service2Client(EndpointConfiguration endpointConfiguration, string remoteAddress) : 
+                base(Service2Client.GetBindingForEndpoint(endpointConfiguration), new System.ServiceModel.EndpointAddress(remoteAddress))
         {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
-        public ServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public Service2Client(EndpointConfiguration endpointConfiguration, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(Service2Client.GetBindingForEndpoint(endpointConfiguration), remoteAddress)
+        {
+            this.Endpoint.Name = endpointConfiguration.ToString();
+            ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
+        }
+        
+        public Service2Client(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress)
         {
         }
         
-        public System.Threading.Tasks.Task<string> GetDataAsync(int value)
-        {
-            return base.Channel.GetDataAsync(value);
-        }
-        
-        public System.Threading.Tasks.Task<ServiceReference1.CompositeType> GetDataUsingDataContractAsync(ServiceReference1.CompositeType composite)
+        public System.Threading.Tasks.Task<ServiceReference2.CompositeType> GetDataUsingDataContractAsync(ServiceReference2.CompositeType composite)
         {
             return base.Channel.GetDataUsingDataContractAsync(composite);
         }
@@ -133,7 +125,7 @@ namespace ServiceReference1
         
         private static System.ServiceModel.Channels.Binding GetBindingForEndpoint(EndpointConfiguration endpointConfiguration)
         {
-            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IService))
+            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IService2))
             {
                 System.ServiceModel.BasicHttpBinding result = new System.ServiceModel.BasicHttpBinding();
                 result.MaxBufferSize = int.MaxValue;
@@ -148,27 +140,27 @@ namespace ServiceReference1
         
         private static System.ServiceModel.EndpointAddress GetEndpointAddress(EndpointConfiguration endpointConfiguration)
         {
-            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IService))
+            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IService2))
             {
-                return new System.ServiceModel.EndpointAddress("https://localhost:5001/Service.svc");
+                return new System.ServiceModel.EndpointAddress("https://localhost:5001/Service2.svc");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
         
         private static System.ServiceModel.Channels.Binding GetDefaultBinding()
         {
-            return ServiceClient.GetBindingForEndpoint(EndpointConfiguration.BasicHttpBinding_IService);
+            return Service2Client.GetBindingForEndpoint(EndpointConfiguration.BasicHttpBinding_IService2);
         }
         
         private static System.ServiceModel.EndpointAddress GetDefaultEndpointAddress()
         {
-            return ServiceClient.GetEndpointAddress(EndpointConfiguration.BasicHttpBinding_IService);
+            return Service2Client.GetEndpointAddress(EndpointConfiguration.BasicHttpBinding_IService2);
         }
         
         public enum EndpointConfiguration
         {
             
-            BasicHttpBinding_IService,
+            BasicHttpBinding_IService2,
         }
     }
 }
