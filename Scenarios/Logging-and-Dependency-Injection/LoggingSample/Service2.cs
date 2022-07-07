@@ -5,35 +5,20 @@ using System.Runtime.Serialization;
 namespace LoggingSample
 {
     [ServiceContract]
-    public interface IService
+    public interface IService2
     {
-        [OperationContract]
-        string GetData(int value);
-
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
     }
 
-    public class Service : IService
+    // The class is marked as partial, this enables CoreWCF to generate methods for injected parameters
+    public partial class Service2 : IService2
     {
-        private ILogger<Service> _logger;
-
-        // Parameterized constructor will be called by Dependency Injection
-        // Logs will be created under the name "LoggingSample.Service" as that's the type name used constructing the logger object
-        public Service(ILogger<Service> logger)
+        // The [Injected] parameter will be created through Dependency Injection and passed in when the method is called
+        // CoreWCF will fulfill the interface contract by  generating a matching method that does the DI lookup and calls into the extended version
+        public CompositeType GetDataUsingDataContract(CompositeType composite, [Injected] ILogger<Service2> localLogger)
         {
-            _logger = logger;
-        }
-
-        public string GetData(int value)
-        {
-            _logger.LogInformation("GetData called with value {value}", value);
-            return string.Format("You entered: {0}", value);
-        }
-
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
-        {
-            _logger.LogInformation("GetDataUsingDataContract called with composite object:  BoolValue:{BoolValue}, StringValue:\"{StringValue}\"", composite.BoolValue, composite.StringValue);
+            localLogger.LogInformation("GetDataUsingDataContract called with composite object:  BoolValue:{BoolValue}, StringValue:\"{StringValue}\"", composite.BoolValue, composite.StringValue);
             if (composite == null)
             {
                 throw new ArgumentNullException("composite");
@@ -41,7 +26,7 @@ namespace LoggingSample
             if (composite.BoolValue)
             {
                 // Note: This is skipped by default because of the level set in appsettings.json
-                _logger.LogTrace("StringValue is being modified");
+                localLogger.LogTrace("StringValue is being modified");
                 composite.StringValue += "Suffix";
             }
             return composite;
