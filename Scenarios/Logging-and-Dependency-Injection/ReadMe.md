@@ -12,7 +12,7 @@ The logger is created for the `LoggingSample.Service` type, and is configured in
 
 ### Scoped Dependency Injection
 
-The `Service2` class demonstrates how to inject a scoped dependency into the service class. The methods that need the dependency include additional parameters for those dependencies, which are marked with the `[Injected]` attribute. Provided that the class is defined as partial, CoreWCF will use code generation to create methods that will fulfill the service contract and supply the dependencies to the.
+The `Service2` class demonstrates how to inject a scoped dependency into a service method. The methods that need the dependency include additional parameters for those dependencies, which are marked with the `\[Injected\]` attribute. Provided that the class is defined as partial, CoreWCF will use code generation to create methods that will fulfill the service contract and supply the dependencies to the user method.
 
 For example, the app code:
 ``` C#
@@ -42,7 +42,7 @@ is supplemented by the following generated code:
         }
 ```
  
-This sample uses DI to inject a logger, but this pattern can be used for other dependencies such as a [DbContext](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext), where localized scoping is required.
+This sample uses DI to inject a logger, but this pattern can be used for other dependencies such as a [`DbContext`](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext), where localized scoping is required. The DI scope is matched to the [`InstanceContextMode` of the `ServiceBehavior` attribute](https://docs.microsoft.com/en-us/dotnet/api/system.servicemodel.servicebehaviorattribute.instancecontextmode?view=netframework-4.8#system-servicemodel-servicebehaviorattribute-instancecontextmode). If you are using `InstanceContextMode.Single`, then all service calls will share a single DI scope. If InstanceContextMode is either `PerCall` or `PerSession`, then a new scope is created for every call or session. The default is PerSession, which is effectively PerCall whenever you aren't using a sessionful binding. The instancing of the dependency is important if the injected instance isn't thread safe, as is the case with DbContext.
 
 ## Logging sample client
 
