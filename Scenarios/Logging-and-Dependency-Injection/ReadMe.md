@@ -12,7 +12,11 @@ The logger is created for the `LoggingSample.Service` type, and is configured in
 
 ### Scoped Dependency Injection
 
-The `Service2` class demonstrates how to inject a scoped dependency into a service method. The methods that need the dependency include additional parameters for those dependencies, which are marked with the `\[Injected\]` attribute. Provided that the class is defined as partial, CoreWCF will use code generation to create methods that will fulfill the service contract and supply the dependencies to the user method.
+The `Service2` class demonstrates how to inject a scoped dependency into a service method. The methods that need the dependency include additional parameters for those dependencies, which are marked with the `[Injected]` attribute. CoreWCF will use code generation to create methods that will fulfill the service contract and supply the dependencies to the user method.
+
+For this to work, the following conditions apply:
+- The service class needs to be declared `partial` so that it can be extended by code generation
+- The service class needs to be registered with DI
 
 For example, the app code:
 ``` C#
