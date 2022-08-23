@@ -14,7 +14,8 @@ var jwt = await getAzAdJwtBlob(builder.Configuration);
 var app = builder.Build();
 
 // Use Minimal WebApi Endpoint for the demo functionality
-app.MapGet("/", (int count) => getTiles(tileService, count, jwt));
+app.Map("/", () => Results.Redirect("/getTiles?Count=5"));
+app.MapGet("/getTiles", (int count) => getTiles(tileService, count, jwt));
 
 app.Run();
 
