@@ -1,6 +1,7 @@
 ﻿using Microsoft.Identity.Web;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Web.Services.Description;
 
 var builder = WebApplication.CreateBuilder();
 
@@ -9,17 +10,18 @@ builder.Services.AddServiceModelServices();
 builder.Services.AddServiceModelMetadata();
 builder.Services.AddSingleton<IServiceBehavior, UseRequestHeadersForMetadataAddressBehavior>();
 
-// Asp.NET Core Authentication
+//Register the `TileBag` class with Dependency Injection, based on it being a single instance
+builder.Services.AddSingleton<TileBag>();
+
+// ASP.NET Core Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
              .AddMicrosoftIdentityWebApi(builder.Configuration);
-
-//TODO: Remove
-builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
+    // Should be turned off for production, but will show user info as part of logging
     Microsoft.IdentityModel.Logging.IdentityModelEventSource.ShowPII = true;
 }
 

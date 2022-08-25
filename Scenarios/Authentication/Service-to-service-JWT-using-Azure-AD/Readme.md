@@ -6,7 +6,7 @@ This sample shows how a client can authenticate with a CoreWCF service using JWT
 
 ## What is a JWT
 
-[JSON Web Token](https://en.wikipedia.org/wiki/JSON_Web_Token) is a way to support federated authentication and authorization of http requests. The client makes a call to an authentication server passing credentials and identifying information about the resource they wish to access. If authentication succeeds and the resource is authorized, they are handed back a signed token which includes information about the resource and rights. The client then passes that token to the service, which can then verify its integrity and trust the claims it specifies.
+[JSON Web Token](https://en.wikipedia.org/wiki/JSON_Web_Token) ([rfc 7519](https://www.rfc-editor.org/rfc/rfc7519)) is a way to support federated authentication and authorization of http requests. The client makes a call to an authentication server passing credentials and identifying information about the resource they wish to access. If authentication succeeds and the resource is authorized, they are handed back a signed token which includes information about the resource and rights. The client then passes that token to the service, which can then verify its integrity and trust the claims it specifies.
 
 JWT is an open standard supported by multiple server stacks, clients, code languages and identity providers.
 

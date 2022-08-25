@@ -4,6 +4,7 @@ using System.Runtime.Serialization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Identity.Web.Resource;
+using System.Web.Services.Description;
 
 namespace TileService
 {
@@ -14,41 +15,45 @@ namespace TileService
         IList<GameTile> DrawTiles(int count);
     }
 
-    public class TileBag : ITileService
+    public partial class TileBag : ITileService
     {
-        private static IList<GameTile> _gameTiles = initTileCollection();
-        private static int TileCount;
-        private static Random rnd = new Random();
+        private IList<GameTile> _gameTiles;
+        private int _tileCount;
+        private  Random _rnd;
+        private ILogger<TileBag> _logger;
+        private bool _isDev = false;
 
-     //  [AuthorizeRole("AccessTileBag")]
-        public IList<GameTile> DrawTiles(int count)
+        // Parameterized constructor will be called by Dependency Injection
+        public TileBag(ILogger<TileBag> logger, IWebHostEnvironment env)
         {
+            _logger = logger;
+            if (env.IsDevelopment()) _isDev = true;
+            _rnd = new Random();
+            _gameTiles = initTileCollection();
+        }
 
-            // TODO: Remove this block
-            var ctxa = new HttpContextAccessor();
-            var ctx = ctxa.HttpContext;
-            if (ctx == null) { Console.WriteLine("no http context"); }
-            else
+
+        [AuthorizeRole("AccessTileBag")]
+
+        public IList<GameTile> DrawTiles(int count, [Injected] HttpContext ctx)
+        {
+            if (_isDev)
             {
                 foreach (var claim in ctx.User.Claims)
                 {
-                    Console.WriteLine("***** BEGIN CLAIM *****");
-                    Console.WriteLine(claim.ToString());
-                    Console.WriteLine("***** END CLAIM *****");
+                    _logger.LogDebug("Claims {claim}", claim.ToString());
                 }
-                Console.WriteLine("***** BEGIN HEADERS *****");
                 foreach (var h in ctx.Request.Headers)
                 {
-                    Console.WriteLine(h.Key + ":" + h.Value);
+                    _logger.LogDebug("Request Header {name}={value}", h.Key, h.Value);
                 }
-                Console.WriteLine("***** END HEADERS *****");
             }
             if (count > 0)
             {
                 var tiles = new List<GameTile>();
                 for (var i = 0; i < count; i++)
                 {
-                    var index = rnd.Next(TileCount);
+                    var index = _rnd.Next(_tileCount);
                     var t_offset = 0;
                     foreach (var t in _gameTiles)
                     {
@@ -66,7 +71,7 @@ namespace TileService
         }
 
 
-        private static IList<GameTile> initTileCollection()
+        private IList<GameTile> initTileCollection()
         {
             var tiles = new List<GameTile>();
             tiles.Add(new GameTile('A', 1, 9));
@@ -97,7 +102,7 @@ namespace TileService
             tiles.Add(new GameTile('Z', 10, 1));
             tiles.Add(new GameTile('\0', 0, 2));
 
-            TileCount = (from t in tiles
+            _tileCount = (from t in tiles
                          select t.Weight).Sum();
             return tiles;
         }

@@ -1,51 +1,38 @@
+using CoreWCF.Helpers;
 using Microsoft.Identity.Client;
 using Microsoft.Identity.Web;
 using ServiceReference1;
-using System.ServiceModel.Channels;
-using System.ServiceModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var tileServiceUrl = builder.Configuration["TileServiceUrl"];
-var tileService = TileServiceFactory(tileServiceUrl);
 
 //builder.Services.AddSingleton<ITileService>(TileServiceFactory);
 var jwt = await getAzAdJwtBlob(builder.Configuration);
+var tileService = TileServiceFactory(tileServiceUrl, jwt);
 var app = builder.Build();
 
 // Use Minimal WebApi Endpoint for the demo functionality
 app.Map("/", () => Results.Redirect("/getTiles?Count=5"));
-app.MapGet("/getTiles", (int count) => getTiles(tileService, count, jwt));
+app.MapGet("/getTiles", (int count) => getTiles(tileService, count));
 
 app.Run();
 
 // Factory for TileService
-TileServiceClient TileServiceFactory(string tileServiceUrl)
+TileServiceClient TileServiceFactory(string tileServiceUrl, string jwt)
 {
-    return new TileServiceClient(TileServiceClient.EndpointConfiguration.BasicHttpBinding_ITileService, tileServiceUrl);
+    var client = new TileServiceClient(TileServiceClient.EndpointConfiguration.BasicHttpBinding_ITileService, tileServiceUrl);
+
+    // Use a helper from HttpRequestBehaviors.cs to add a client behavior that adds http headers
+    // to outbound requests
+    client.AddRequestHeader("Authorization", $"Bearer {jwt}");
+    return client;
 }
 
-//TileServiceClient TileServiceFactory(IServiceProvider provider)
-//{
-//    var config = provider.GetRequiredService(IConfiguration);
-//    var tileServiceUrl = config["TileServiceUrl"];
-//    return new TileServiceClient(TileServiceClient.EndpointConfiguration.BasicHttpBinding_ITileService, tileServiceUrl);
-//}
-
-async Task<IList<GameTile>> getTiles(TileServiceClient tileService, int count, string jwt)
+async Task<IList<GameTile>> getTiles(TileServiceClient tileService, int count)
 {
-        // Create a scope for this call
-        using (new OperationContextScope((tileService).InnerChannel))
-        {
-            // Add an http Authorization header with the JWT
-            HttpRequestMessageProperty requestMessage = new HttpRequestMessageProperty();
-            requestMessage.Headers["Authorization"] = $"Bearer {jwt}";
-            OperationContext.Current.OutgoingMessageProperties[HttpRequestMessageProperty.Name] = requestMessage;
-            return await tileService.DrawTilesAsync(count);
-        }
-    
+    return await tileService.DrawTilesAsync(count);
 }
-
 
 // Azure Active Directoy specific code to authenticate a daemon app with a service
 // Based on https://github.com/Azure-Samples/active-directory-dotnetcore-daemon-v2/tree/master/4-Call-OwnApi-Pop
