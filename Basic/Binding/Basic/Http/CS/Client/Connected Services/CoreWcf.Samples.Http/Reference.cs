@@ -159,7 +159,7 @@ namespace CoreWcf.Samples.Http
         {
             if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_ICalculatorService))
             {
-                return new System.ServiceModel.EndpointAddress("http://localhost/COREWCFSAMPLES/CALCULATORSERVICE/CalculatorService/basicHttp");
+                return new System.ServiceModel.EndpointAddress("http://localhost/CoreWcfSamples/CalculatorService/CalculatorService/basicHttp");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
