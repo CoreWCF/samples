@@ -1,7 +1,7 @@
 {
   "ExtendedData": {
     "inputs": [
-      "http://localhost/COREWCFSAMPLES/CALCULATORSERVICE?singleWsdl"
+      "http://localhost/CoreWcfSamples/CalculatorService?singleWsdl"
     ],
     "collectionTypes": [
       "System.Array",
