@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.ServiceModel.Federation" Version="4.*" />
+    <PackageReference Include="System.ServiceModel.Http" Version="4.*" />
   </ItemGroup>
 
 </Project>
