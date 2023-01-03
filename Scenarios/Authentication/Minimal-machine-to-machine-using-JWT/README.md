@@ -4,7 +4,7 @@ This sample shows a minimal machine to machine authentication setup using JWT. T
 
 ### Service
 
-`Service` is configured to accept requests authenticated with a valid bearer `access_token` issued by the https://demo.duendesoftware.com identity provider with audience and scope valued to 'api'. The authentication is performed by the standard JwtBearer AuthenticationHandler shipped with ASP.NET Core in `Microsoft.AspNetCore.Authentication.JwtBearer` nuget package.
+`Service` is configured to accept requests authenticated with a valid bearer `access_token` issued by the https://demo.duendesoftware.com identity provider with audience and scope valued to 'api'. The authentication is performed by the standard JwtBearer AuthenticationHandler shipped with ASP.NET Core in the `Microsoft.AspNetCore.Authentication.JwtBearer` nuget package.
 
 ### Client
 
