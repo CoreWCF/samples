@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.32728.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TileService", "TileService\TileService.csproj", "{8B29DBB7-9AEF-4809-ADB7-A376B16A2C84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordGame", "WordGame\WordGame.csproj", "{D9DFC022-7E02-4595-908C-BB0A5683CDF5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B29DBB7-9AEF-4809-ADB7-A376B16A2C84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B29DBB7-9AEF-4809-ADB7-A376B16A2C84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B29DBB7-9AEF-4809-ADB7-A376B16A2C84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B29DBB7-9AEF-4809-ADB7-A376B16A2C84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9DFC022-7E02-4595-908C-BB0A5683CDF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9DFC022-7E02-4595-908C-BB0A5683CDF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9DFC022-7E02-4595-908C-BB0A5683CDF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9DFC022-7E02-4595-908C-BB0A5683CDF5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B915AA32-40C3-40DD-B7BC-A30DD28CA42B}
+	EndGlobalSection
+EndGlobal
