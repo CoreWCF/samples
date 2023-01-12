@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "RabbitMQ_Basic": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:7099;http://localhost:5157"
+    }
+  }
+}
