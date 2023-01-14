@@ -1,4 +1,7 @@
-﻿using CoreWCF;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+
+using CoreWCF;
 using CoreWCF.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,7 +24,7 @@ namespace CoreWcf.Samples.Http
                 // Add the Calculator Service
                 builder.AddService<CalculatorService>(serviceOptions => { })
                 // Add BasicHttpBinding endpoint
-                .AddServiceEndpoint<CalculatorService, ICalculatorService>(new BasicHttpBinding(), "/CalculatorService/basicHttp");
+                .AddServiceEndpoint<CalculatorService, ICalculatorService>(new BasicHttpBinding(), "CalculatorService/basicHttp");
 
                 // Configure WSDL to be available
                 var serviceMetadataBehavior = app.ApplicationServices.GetRequiredService<CoreWCF.Description.ServiceMetadataBehavior>();

@@ -1,4 +1,7 @@
-﻿namespace CoreWcf.Samples.Http
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+
+namespace CoreWcf.Samples.Http
 {
     // Service class which implements the service contract interface.
     public class CalculatorService : ICalculatorService
