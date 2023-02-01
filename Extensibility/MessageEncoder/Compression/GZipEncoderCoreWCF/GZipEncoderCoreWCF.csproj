@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Using Include="CoreWCF" />
+    <Using Include="CoreWCF.Channels" />
+    <Using Include="CoreWCF.Configuration" />
+    <Using Include="CoreWCF.Description" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CoreWCF.Http" Version="1.*" />
+    <PackageReference Include="CoreWCF.ConfigurationManager" Version="1.*" />
+  </ItemGroup>
+  
+</Project>
