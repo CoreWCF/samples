@@ -1,4 +1,6 @@
-﻿
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+
 namespace CoreWcf.Samples.Http
 {
     //The service contract is defined using Connected Service "WCF Web Service", generated from the service by the dotnet svcutil tool.
