@@ -2,8 +2,10 @@
 using System.Net;
 using CoreWCF.Configuration;
 using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Authentication.Negotiate;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace NetCoreServer
 {
@@ -28,6 +30,10 @@ namespace NetCoreServer
                         listenOptions.UseConnectionLogging();
                     }
                 });
+            })
+            .ConfigureServices(options =>
+            {
+                options.AddAuthentication(NegotiateDefaults.AuthenticationScheme).AddNegotiate();
             })
             .UseNetTcp(Startup.NETTCP_PORT)
             .UseStartup<Startup>();
