@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Using Include="CoreWCF" />
+    <Using Include="CoreWCF.Configuration" />
+    <Using Include="CoreWCF.Description" />
+    <Using Include="CoreWcf.Samples.NetTcp" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="CoreWCF.NetTcp" Version="1.*" />
+  </ItemGroup>
+  
+</Project>
